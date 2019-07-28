@@ -1,8 +1,10 @@
 --- 
 title: "MAD -- Análise de Dados em R"
 subtitle: "Biomedicina 2019"
-author: "James R. Hunter"
-date: '22 de agosto de 2019'
+author:
+- name: James R. Hunter
+  affiliation: Bioinformática, UNIFESP
+date: '`r format(Sys.Date())`'
 output: bookdown::gitbook
 github-repo: rstudio/bookdown-demo
 link-citations: yes
