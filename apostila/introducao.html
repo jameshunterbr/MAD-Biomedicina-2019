@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Matéria de Análise de Dados (MAD) - Biomedicina</title>
+  <meta name="description" content="Matéria de Análise de Dados com R (MAD-R): Curso para a Disciplina de Biomedicina" />
+  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Matéria de Análise de Dados (MAD) - Biomedicina" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Matéria de Análise de Dados com R (MAD-R): Curso para a Disciplina de Biomedicina" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Matéria de Análise de Dados (MAD) - Biomedicina" />
+  
+  <meta name="twitter:description" content="Matéria de Análise de Dados com R (MAD-R): Curso para a Disciplina de Biomedicina" />
+  
+
+
+
+<meta name="date" content="2019-08-06" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="vamos-comecar.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="introducao.html"><a href="introducao.html"><i class="fa fa-check"></i><b>1</b> Introdução</a></li>
+<li class="chapter" data-level="2" data-path="vamos-comecar.html"><a href="vamos-comecar.html"><i class="fa fa-check"></i><b>2</b> Vamos Começar</a><ul>
+<li class="chapter" data-level="2.1" data-path="vamos-comecar.html"><a href="vamos-comecar.html#historia-de-r-e-porque-precisamos-ele"><i class="fa fa-check"></i><b>2.1</b> Historia de R e Porque Precisamos Ele</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="vamos-comecar.html"><a href="vamos-comecar.html#historia"><i class="fa fa-check"></i><b>2.1.1</b> Historia</a></li>
+<li class="chapter" data-level="2.1.2" data-path="vamos-comecar.html"><a href="vamos-comecar.html#porque-professor-jim-usa-r"><i class="fa fa-check"></i><b>2.1.2</b> Porque Professor Jim Usa R</a></li>
+<li class="chapter" data-level="2.1.3" data-path="vamos-comecar.html"><a href="vamos-comecar.html#problemas-com-os-tradicionais-programas-da-analise-de-dados"><i class="fa fa-check"></i><b>2.1.3</b> Problemas com os Tradicionais Programas da Análise de Dados</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="vamos-comecar.html"><a href="vamos-comecar.html#software-open-source-vs.comercial"><i class="fa fa-check"></i><b>2.2</b> Software: Open-Source vs. Comercial</a></li>
+<li class="chapter" data-level="2.3" data-path="vamos-comecar.html"><a href="vamos-comecar.html#r-vs.python"><i class="fa fa-check"></i><b>2.3</b> R vs. Python</a></li>
+<li class="chapter" data-level="2.4" data-path="vamos-comecar.html"><a href="vamos-comecar.html#aprendizagem-de-r-e-dificil"><i class="fa fa-check"></i><b>2.4</b> Aprendizagem de R, É Difícil?</a></li>
+<li class="chapter" data-level="2.5" data-path="vamos-comecar.html"><a href="vamos-comecar.html#advertencia-importante"><i class="fa fa-check"></i><b>2.5</b> Advertência Importante</a></li>
+<li class="chapter" data-level="2.6" data-path="vamos-comecar.html"><a href="vamos-comecar.html#instalacao-dos-softwares"><i class="fa fa-check"></i><b>2.6</b> Instalação dos Softwares</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="vamos-comecar.html"><a href="vamos-comecar.html#instalacao-do-r"><i class="fa fa-check"></i><b>2.6.1</b> Instalação do R</a></li>
+<li class="chapter" data-level="2.6.2" data-path="vamos-comecar.html"><a href="vamos-comecar.html#instalacao-de-r-para-os-windows"><i class="fa fa-check"></i><b>2.6.2</b> Instalação de R para os Windows</a></li>
+<li class="chapter" data-level="2.6.3" data-path="vamos-comecar.html"><a href="vamos-comecar.html#instalacao-do-rstudio"><i class="fa fa-check"></i><b>2.6.3</b> Instalação do RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="vamos-comecar.html"><a href="vamos-comecar.html#iniciando-rstudio"><i class="fa fa-check"></i><b>2.7</b> Iniciando RStudio</a></li>
+<li class="chapter" data-level="2.8" data-path="vamos-comecar.html"><a href="vamos-comecar.html#instalar-os-pacotes-necessarios"><i class="fa fa-check"></i><b>2.8</b> Instalar os Pacotes Necessários</a><ul>
+<li class="chapter" data-level="2.8.1" data-path="vamos-comecar.html"><a href="vamos-comecar.html#nosso-primeiro-programa"><i class="fa fa-check"></i><b>2.8.1</b> Nosso Primeiro Programa</a></li>
+<li class="chapter" data-level="2.8.2" data-path="vamos-comecar.html"><a href="vamos-comecar.html#localizacao-do-arquivo-instalar_pacotes.r"><i class="fa fa-check"></i><b>2.8.2</b> Localização do Arquivo <code>instalar_pacotes.R</code></a></li>
+<li class="chapter" data-level="2.8.3" data-path="vamos-comecar.html"><a href="vamos-comecar.html#o-que-e-um-working-directory"><i class="fa fa-check"></i><b>2.8.3</b> O Que É Um <em>Working Directory</em>?</a></li>
+<li class="chapter" data-level="2.8.4" data-path="vamos-comecar.html"><a href="vamos-comecar.html#instalar-os-pacotes"><i class="fa fa-check"></i><b>2.8.4</b> Instalar os Pacotes</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="vamos-comecar.html"><a href="vamos-comecar.html#prontos-para-trabalhar"><i class="fa fa-check"></i><b>2.9</b> Prontos para Trabalhar</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="recursos-para-o-curso.html"><a href="recursos-para-o-curso.html"><i class="fa fa-check"></i><b>3</b> Recursos para o Curso</a><ul>
+<li class="chapter" data-level="3.1" data-path="recursos-para-o-curso.html"><a href="recursos-para-o-curso.html#cursos"><i class="fa fa-check"></i><b>3.1</b> Cursos</a></li>
+<li class="chapter" data-level="3.2" data-path="recursos-para-o-curso.html"><a href="recursos-para-o-curso.html#livros-r-programacao"><i class="fa fa-check"></i><b>3.2</b> Livros — R &amp; Programação</a></li>
+<li class="chapter" data-level="3.3" data-path="recursos-para-o-curso.html"><a href="recursos-para-o-curso.html#cheatsheets"><i class="fa fa-check"></i><b>3.3</b> <em>Cheatsheets</em></a></li>
+<li class="chapter" data-level="3.4" data-path="recursos-para-o-curso.html"><a href="recursos-para-o-curso.html#sites"><i class="fa fa-check"></i><b>3.4</b> Sites</a></li>
+<li class="chapter" data-level="3.5" data-path="recursos-para-o-curso.html"><a href="recursos-para-o-curso.html#canal-de-video"><i class="fa fa-check"></i><b>3.5</b> Canal de Vídeo</a></li>
+<li class="chapter" data-level="3.6" data-path="recursos-para-o-curso.html"><a href="recursos-para-o-curso.html#sistema-de-ajuda-de-r-e-rstudio"><i class="fa fa-check"></i><b>3.6</b> Sistema de Ajuda de R e RStudio</a></li>
+<li class="chapter" data-level="3.7" data-path="recursos-para-o-curso.html"><a href="recursos-para-o-curso.html#um-pensamento-final-perguntas"><i class="fa fa-check"></i><b>3.7</b> Um Pensamento Final — Perguntas</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="tipos-de-variaveis-comuns.html"><a href="tipos-de-variaveis-comuns.html"><i class="fa fa-check"></i><b>4</b> Tipos de Variáveis Comuns</a><ul>
+<li class="chapter" data-level="4.1" data-path="tipos-de-variaveis-comuns.html"><a href="tipos-de-variaveis-comuns.html#o-que-sao-dados"><i class="fa fa-check"></i><b>4.1</b> O Que São Dados?</a></li>
+<li class="chapter" data-level="4.2" data-path="tipos-de-variaveis-comuns.html"><a href="tipos-de-variaveis-comuns.html#exemplos-de-assignment"><i class="fa fa-check"></i><b>4.2</b> Exemplos de <em>Assignment</em></a></li>
+<li class="chapter" data-level="4.3" data-path="tipos-de-variaveis-comuns.html"><a href="tipos-de-variaveis-comuns.html#projetos-e-pastas"><i class="fa fa-check"></i><b>4.3</b> Projetos e Pastas</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="projetos-e-pastas-1.html"><a href="projetos-e-pastas-1.html"><i class="fa fa-check"></i><b>5</b> Projetos e Pastas</a><ul>
+<li class="chapter" data-level="5.1" data-path="projetos-e-pastas-1.html"><a href="projetos-e-pastas-1.html#projetos-em-rstudio"><i class="fa fa-check"></i><b>5.1</b> Projetos em RStudio</a></li>
+<li class="chapter" data-level="5.2" data-path="projetos-e-pastas-1.html"><a href="projetos-e-pastas-1.html#criar-um-novo-projeto"><i class="fa fa-check"></i><b>5.2</b> Criar Um Novo Projeto</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="projetos-e-pastas-1.html"><a href="projetos-e-pastas-1.html#subpastas"><i class="fa fa-check"></i><b>5.2.1</b> SubPastas</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="projetos-e-pastas-1.html"><a href="projetos-e-pastas-1.html#onde-estamos-professor-were-here"><i class="fa fa-check"></i><b>5.3</b> Onde Estamos, Professor? “<em>We’re HERE</em>”</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="estilo-de-codigo-e-manipulacao-das-variaveis.html"><a href="estilo-de-codigo-e-manipulacao-das-variaveis.html"><i class="fa fa-check"></i><b>6</b> Estilo de Código e Manipulação das Variáveis</a><ul>
+<li class="chapter" data-level="6.1" data-path="estilo-de-codigo-e-manipulacao-das-variaveis.html"><a href="estilo-de-codigo-e-manipulacao-das-variaveis.html#questoes-de-estilo"><i class="fa fa-check"></i><b>6.1</b> Questões de Estilo</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="estilo-de-codigo-e-manipulacao-das-variaveis.html"><a href="estilo-de-codigo-e-manipulacao-das-variaveis.html#uma-pergunta-sobre-o-estilo-parenteses-depois-de-uma-funcao"><i class="fa fa-check"></i><b>6.1.1</b> Uma Pergunta sobre o Estilo – Parenteses depois de uma função</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="estilo-de-codigo-e-manipulacao-das-variaveis.html"><a href="estilo-de-codigo-e-manipulacao-das-variaveis.html#conjunto-dos-dados-mais-complicado"><i class="fa fa-check"></i><b>6.2</b> Conjunto dos Dados Mais Complicado</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="estilo-de-codigo-e-manipulacao-das-variaveis.html"><a href="estilo-de-codigo-e-manipulacao-das-variaveis.html#passo-1-criar-um-projeto"><i class="fa fa-check"></i><b>6.2.1</b> Passo 1 — Criar Um Projeto</a></li>
+<li class="chapter" data-level="6.2.2" data-path="estilo-de-codigo-e-manipulacao-das-variaveis.html"><a href="estilo-de-codigo-e-manipulacao-das-variaveis.html#passo-2-carregar-o-tidyverse"><i class="fa fa-check"></i><b>6.2.2</b> Passo 2 — Carregar o Tidyverse</a></li>
+<li class="chapter" data-level="6.2.3" data-path="estilo-de-codigo-e-manipulacao-das-variaveis.html"><a href="estilo-de-codigo-e-manipulacao-das-variaveis.html#passo-3-download-os-dados-de-github"><i class="fa fa-check"></i><b>6.2.3</b> Passo 3 — Download os Dados de GitHub</a></li>
+<li class="chapter" data-level="6.2.4" data-path="estilo-de-codigo-e-manipulacao-das-variaveis.html"><a href="estilo-de-codigo-e-manipulacao-das-variaveis.html#passo-4-carregar-os-dados-na-memoria-de-r"><i class="fa fa-check"></i><b>6.2.4</b> Passo 4 — Carregar os Dados na Memoria de R</a></li>
+<li class="chapter" data-level="6.2.5" data-path="estilo-de-codigo-e-manipulacao-das-variaveis.html"><a href="estilo-de-codigo-e-manipulacao-das-variaveis.html#passo-5-qual-e-o-tipo-do-conjunto-dos-dados"><i class="fa fa-check"></i><b>6.2.5</b> Passo 5 — Qual É o Tipo do Conjunto dos Dados?</a></li>
+<li class="chapter" data-level="6.2.6" data-path="estilo-de-codigo-e-manipulacao-das-variaveis.html"><a href="estilo-de-codigo-e-manipulacao-das-variaveis.html#passo-6-subconjuntos-subsets-de-dados"><i class="fa fa-check"></i><b>6.2.6</b> Passo 6 — Subconjuntos (<em>Subsets</em>) de <code>dados</code></a></li>
+<li class="chapter" data-level="6.2.7" data-path="estilo-de-codigo-e-manipulacao-das-variaveis.html"><a href="estilo-de-codigo-e-manipulacao-das-variaveis.html#novos-nomes-para-as-variaveis-loops"><i class="fa fa-check"></i><b>6.2.7</b> Novos Nomes para as Variáveis — Loops</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="estilo-de-codigo-e-manipulacao-das-variaveis.html"><a href="estilo-de-codigo-e-manipulacao-das-variaveis.html#analise-de-dados-de-inflamacao"><i class="fa fa-check"></i><b>6.3</b> Análise de Dados de Inflamação</a></li>
+<li class="chapter" data-level="6.4" data-path="estilo-de-codigo-e-manipulacao-das-variaveis.html"><a href="estilo-de-codigo-e-manipulacao-das-variaveis.html#graficos-do-conjunto-dos-dados"><i class="fa fa-check"></i><b>6.4</b> Gráficos do Conjunto dos Dados</a></li>
+<li class="chapter" data-level="6.5" data-path="estilo-de-codigo-e-manipulacao-das-variaveis.html"><a href="estilo-de-codigo-e-manipulacao-das-variaveis.html#whew-final-da-introducao"><i class="fa fa-check"></i><b>6.5</b> Whew! Final da Introdução</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="importacao-dos-dados.html"><a href="importacao-dos-dados.html"><i class="fa fa-check"></i><b>7</b> Importação dos Dados</a><ul>
+<li class="chapter" data-level="7.1" data-path="importacao-dos-dados.html"><a href="importacao-dos-dados.html#fluxo-de-trabalho-de-analises-em-r"><i class="fa fa-check"></i><b>7.1</b> Fluxo de Trabalho de Análises em R</a></li>
+<li class="chapter" data-level="7.2" data-path="importacao-dos-dados.html"><a href="importacao-dos-dados.html#importar-dados-para-r"><i class="fa fa-check"></i><b>7.2</b> Importar Dados para R</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="importacao-dos-dados.html"><a href="importacao-dos-dados.html#read_csv-arquivos-.csv"><i class="fa fa-check"></i><b>7.2.1</b> <code>read_csv()</code> — Arquivos .csv</a></li>
+<li class="chapter" data-level="7.2.2" data-path="importacao-dos-dados.html"><a href="importacao-dos-dados.html#planilhas-de-excel"><i class="fa fa-check"></i><b>7.2.2</b> Planilhas de Excel</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="importacao-dos-dados.html"><a href="importacao-dos-dados.html#nomes-dos-objetos-em-r"><i class="fa fa-check"></i><b>7.3</b> Nomes dos Objetos em R</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="importacao-dos-dados.html"><a href="importacao-dos-dados.html#assistencia-rstudio"><i class="fa fa-check"></i><b>7.3.1</b> Assistência – RStudio</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Matéria de Análise de Dados (MAD) - Biomedicina</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Matéria de Análise de Dados (MAD) - Biomedicina</h1>
+<h2 class="subtitle"><em>Análise de Dados com R</em></h2>
+<p class="author"><em>James R. Hunter</em></p>
+<address class="author_afil">
+Bioinformática, UNIFESP<br><p class="date"><em>2019-08-06</em></p>
+</div>
+<div id="introducao" class="section level1">
+<h1><span class="header-section-number">1</span> Introdução</h1>
+<div class="figure" style="text-align: center"><span id="fig:MADlogo"></span>
+<img src="graficos/course_logo_3_small.png" alt="Matéria de Análise de Dados" width="920" />
+<p class="caption">
+Figure 1.1: Matéria de Análise de Dados
+</p>
+</div>
+<p>Nos capítulos seguintes, nós vamos aprender a linguagem de estatística e programação R e sua utilização na análise de dados. O “approach” será bem prática. Vamos começar com a instalação do software necessário, continuar com operações básicas em R, e explorar vários metodos de análise para os estudos biomédicos. No longo do caminho à conclusão da matéria, você terá muitas oportunidades para praticar suas habilidades.</p>
+<p>Deixe-me ressaltar aqui que estou escrevendo e desenvolvendo todos os materiais da matéria em R, no formato <em>R Markdown</em>: apostila, slides, etc. R com RStudio tem uma gama de recursos super abrangente. Nós vamos ver neste curso rápido só uma pequena porção deles.</p>
+<p>Quando inclui programação em R, vou usar o seguinte fonte:</p>
+<pre><code>sub_dados &lt;- dados %&gt;% 
+  select(dia20:dia25)
+glimpse(sub_dados)
+summary(sub_dados)
+sub_dados %&gt;% map_dbl(sd)</code></pre>
+<p>As vezes, vai ter um ponto importante que não cabe linearmente no texto. Este tipo de ponto eu chamo um <strong>VSS</strong>, um <em>verbum sapientibus satis</em> que é Latím para “uma palavra é suficiente para os sábios”, em honra da minha professora de Latím de ensino médio, Profa. Walden.</p>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="vamos-comecar.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+},
+"search": false
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
