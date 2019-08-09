@@ -1,0 +1,310 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+# Estilo de Código e Manipulação das Variáveis
+
+## Questões de Estilo
+
+Como você apresenta o código vai facilitar o seu entendimento do que você fez tanto quanto ajudar uma outra pessoa entendê-lo. Vale a pena seguir umas regras consistentes. Assim, tudo mundo (e R) vai entender o código que você escreveu. Vamos fazer um exemplo para mostrar este ponto.
+
+```{r peso, echo = TRUE}
+## 1ª Versão
+peso <- 55  ## Pessoa pesa 55 kg.
+
+## 2ª Versão
+peso_kg <- 55 ## Mais claro
+
+## Pode Converter à Libra
+peso_lb <- peso_kg * 2.2
+peso_lb
+
+```
+
+O primeiro ponto a ressaltar é que este código tem muitos comentários. Fazemos comentários em R utilizando o sinal `#` ("hashtag"). R não interpreta qualquer caráter depois do primeiro `#` numa linha de código. Este pode ocorrer numa linha sozinha como `## 1ª Versão` ou depois de um operação como na segunda linha (`peso <- 55 ## Pessoa pesa 55 kg.`).
+
+A primeira versão da atribuição não é muito clara. Se não tivesse o comentário sobre `55 kg`, como você saberia que estávamos falando de conversão entre quilos, libras ou toneladas? A segunda versão esclarece diretamente no nome da variável `peso_kg`. E a linha que faz a conversão também tem uma variável com um bom nome que explica claramente o que é este valor.
+
+Frequentemente, pessoas gostam de usar nomes muito breves, mas não muito claros com `x`, `i` ou `n24`. É muito melhor usar nomes que explicam o que contem a variável que de enfatizar brevidade.
+
+Existem muitos outros aspetos de estilo que são padronizado no mundo de programação de R. Uma guia para um estilo claro de programação foi desenvolvido pelo Hadley Wickham de RStudio e pode ser achado aqui: http://style.tidyverse.org/. O pacote `styler` que você carregou na instalação criou "Addins" no RStudio que pode acessar do item na barra superior. Esses opções permite que R em si coloca seu código no estilo correto seguindo as normas da guia de Wickham.
+
+```{r styler, echo = FALSE, fig.align='center', fig.cap = "Styler Addins"}
+gr <- here::here("graficos")
+knitr::include_graphics(glue::glue(gr, '/style_addin.png'))
+```
+
+### Uma Pergunta sobre o Estilo -- Parenteses depois de uma função
+
+Este é um bom momento para comentar porque sempre usamos `()` depois do nome da função. Com os parênteses, R vai executar a função. Sem eles, vai imprimir para a tela o código (ou seja, o conteúdo) da função. Por exemplo, na figura seguinte, mostro a função `coalesce` do pacote `dplyr`. Na primeira versão, **sem** parenteses, R mostra o código da função. Na segunda, **com** parenteses, R mostra o resultado do cálculo da função.
+
+```{r getwd, echo = FALSE, fig.align='center', fig.cap = "coalesce vs. coalesce()"}
+knitr::include_graphics(glue::glue(gr, '/coalesce()_vs_coalesce.png'))
+```
+
+## Conjunto dos Dados Mais Complicado
+
+Este exercício, que estou adaptando do currículo do grupo "Software Carpentry", [^4] analisa  dados médicos sobre tratamentos para a artrite e a inflamação que a doença causa. Ele mostra a avaliação de inflamação de 60 pacientes diariamente durante 40 dias. 
+
+Para nossos fins de aprender R, podemos aprender 
+
+- Como inserir dados nos objetos R
+- Como manipular esses dados
+- Gráficos básicos
+- Resumos descritivos de dados
+- Funções em R
+- Loops
+
+[^4]: Agradeço Software Carpentry pelo uso desses dados. (http://swcarpentry.github.io/)
+
+Imagine que você trabalha num laboratório farmacêutico que está desenvolvendo um novo tratamento para artrite. Você precisa avaliar os resultados de uma teste deste tratamento para ver se cumpriu os objetivos que a empresa teve para ele. Você recebe o arquivo `inflamação.csv`, um arquivo de Excel gravado no formato csv (*comma separated values*). Você precisa colocar este arquivo no seu *working directory* e carregar os dados na memoria onde R pode operar neles. 
+
+### Passo 1 --- Criar Um Projeto
+
+Primeiro, criaremos um projeto em RStudio onde vamos colocar a análise de artrite. 
+
+Nós trabalharemos neste projeto (e pasta) enquanto trabalhamos com a artrite. No sistema operacional podemos colocar o arquivo `inflamação.csv` na pasta de seu projeto `artrite`.
+
+### Passo 2 --- Carregar o Tidyverse
+
+Neste exercício e em todo o curso, nós vamos usar muitas funções do Tidyverse. Estas funções existem em vários pacotes. O pacote `tidyverse` é uma coleção dessas outras pacotes e vai carregar eles. Apesar que existem outros pacotes no Tidyverse, aqueles carregados pelo `tidyverse` são os mais importantes e eles permitem que nós podemos ler arquivos, manipular dados, fazer análises e visualizar gráficos. Antes de desenhar gráficos, nós vamos carregar um outro pacote `ggpubr` que simplifica os comandos gráficos utilizando a tecnologia `ggplot`, o componente centrais dos gráficos de Tidyverse.
+
+Para carregar pacotes que já temos instalados no computador, usamos a função `library()` com o nome do pacote como argumento. Entretanto, para ver o efeito de carregar o Tidyverse, vamos olhar na diferença entre o estado da memoria antes e depois do Tidyverse. Para isso, usamos a função `sessionInfo()` para mostra o que está carregado. Primeiro, aqui é como sua memoria quando você inicia R.
+
+```{r tidyv, echo = TRUE, eval = FALSE}
+sessionInfo() ## Comando para mostrar o estado do sistema R neste momento
+```
+
+```{r siantes, echo = FALSE, fig.align='center', fig.cap = "Pacotes Antes Tidyverse"}
+knitr::include_graphics(glue::glue(gr, '/session_bare.png'))
+```
+
+Só têm os sete pacotes básicos que R carregar quando incia. Agora vamos carregar o Tidyverse.
+
+```{r tv2, echo = TRUE}
+library(tidyverse)
+```
+
+```{r tv3, echo = TRUE, eval = FALSE}
+sessionInfo()
+```
+
+
+```{r tidyverse_load, echo = FALSE, fig.align='center', fig.cap = "Tidyverse Básico"}
+knitr::include_graphics(glue::glue(gr, '/session_tidyv.png'))
+```
+
+Agora, a memoria é bem diferente. Temos os nove pacotes carregados como *other attached packages* e 15 pacotes novos carregados em um *namespace* (conceito mais avançado que nosso curso) que são disponíveis para uso pelos pacotes de tidyverse.
+
+### Passo 3 --- Download os Dados de GitHub
+
+Os dados atualmente existem no GitHub. No capitulo 1, aprendemos como fazer o download dos arquivos do GitHub. Siga o mesmo processo em seu sistema operacional e com seu browser para pôr `inflamacao.csv` na pasta do seu projeto `artrite`. 
+
+Para ajudar, aqui é um resumo dos passos:
+
+- aponte a browser para o repo do curso: https://github.com/jameshunterbr/MAD-Biomedicina-2019
+- clique no nome do arquivo: `inflamacao.csv`
+- clique no botão "Raw"
+- salvar a página na pasta do projeto. [^5]
+
+[^5]: Se o browser quer que você usa o sufixo "txt" para seu arquivo, precisa insistir no uso de "csv". Um arquivo "csv" é um tipo de arquivo de texto simples, mas outros programas como Excel só querem ver o sufixo "csv".
+
+### Passo 4 --- Carregar os Dados na Memoria de R
+
+R precisa ter todos os dados em que vai operar na memoria ativa do computador. Não trabalha nas cópias gravadas dos arquivos para fazer operações. Outras linguagens como SQL e C podem operar em dados gravados, mas R não. Entretanto, este não e um limite em qualquer sentido prática. Nos laptops modernos, o espaço de memoria fica suficiente grande para suportar quase qualquer base de dados, mesmo se tivesse múltiplas gigabytes de dados.
+
+Para carregar, nós vamos usar a função `read_csv()` que vai pegar o arquivo e criar um objeto na memoria do R. 
+
+```{r load_dados, message = FALSE}
+dados <- read_csv(file = "../inflamacao.csv", col_names = FALSE)
+```
+
+```{r env_dados, echo = FALSE, fig.align='center', fig.cap = "Environment com dados"}
+knitr::include_graphics("~/Documents/Sustentare/Data_Analysis_with_R/dawR1/environment_dados.png")
+```
+
+A função `read_csv()` vem do pacote `readr`. Ela tenta automatizar tanto quanto é possível a importação dos dados. Até, ela analisa os dados para decidir qual é o tipo de dados que o conjunto tem: caráter, número inteiro, número decimal, lógico, etc. Também usa a primeira linha como o nome das variáveis (colunas da planilha). Neste caso, as colunas só têm dados, não nomes na primeira linha. Então, temos que avisar `read_csv()` disso. Assim, usamos o argumento `colnames = FALSE` porque o padrão é `colnames = TRUE`, como a tela de *Help* para `read_csv` mostra.
+ 
+```{r help_read_csv, echo = FALSE, fig.align='center', fig.cap = "read_csv Help"}
+knitr::include_graphics("~/Documents/Sustentare/Data_Analysis_with_R/dawR1/read_csv_help.png")
+``` 
+
+### Passo 5 --- Qual É o Tipo do Conjunto dos Dados?
+
+Para saber os tipos de análises que podemos fazer no `dados`, precisamos determinar o que temos. Sabemos que temos 40 variáveis que são os dias em que a avaliação foi feita. Primeiro nível de informação é sobre o tipo de dados que temos. Para isso, usamos a função `class()`.
+
+```{r class_db}
+class(dados)
+```
+
+Este quatro descritores indicam que este é um *tibble*, um tipo avançado de `data.frame`. Este é o tipo básico de um conjunto de dados quadrado, com variáveis nas colunas e observações na fileiras. As capacidades adicionais têm a maior significância para as operações internas do R e das funções do Tidyverse, mas pode ser muito mais rápido para conjuntos grandes de dados. 
+
+Existem duas outras funções que mostram mais detalhe sobre o conjunto. `str()` vai mostrar para todo o conjunto a classe (tipo) da variável os primeiros valores dela. `glimpse()` faz a mesma coisa mas com as linhas e colunas trocados. `glimpse()` oferece uma visão mais completa que `str()`. Por causa do tamanho do output in nosso caso com 40 variáveis, vou limitar ela para cinco variáveis usando uma técnica que aprenderemos abaixo.
+
+```{r}
+str(dados[, 1:5])
+glimpse(dados[, 1:5])
+```
+
+
+Também, podemos examinar o tamanho do conjunto usando a função `dim()` (dimensões). Esta retorna para você o número e linhas e colunas nos dados. 
+
+```{r dim_dados}
+dim(dados)
+```
+
+As variáveis são do mesmo tipo. Por isso, podemos olhar no primeiro cinco para ver suficiente detalhe sobre os dados. 
+
+### Passo 6 --- Subconjuntos (*Subsets*) de `dados`
+
+Nós queremos focar nas primeiras cinco variáveis porque mais que isso é simplesmente repetitivo e desnecessária por enquanto. Têm duas maneiras que podemos fazer este foco, um que vem de R básico e o outro que introduza a gente para `dplyr` e a manipulação dos dados no Tidyverse.
+
+*Subconjuntos em R Básico* -- Índices
+
+Podemos referir a um dado individual colocando um índice dentro de colchetes (`[]`), com a fileira primeiro e a coluna depois. Por exemplo, para o primeiro dado em `dados`, podemos dizer `dados[1,1]`. Se nós queremos as avaliações para os primeiros cinco dias (colunas) para paciente 1, podemos dizer `dados[1, 1:5]`. Os dois-pontos diz "todos os valores entre valor 1 e valor 5". Se nós queremos as avaliações dos cinco primeiro pacientes (fileiras) no primeiro dia (coluna), podemos dizer `dados[1:5, 1]`. Se nós queremos ver todos as colunas ou todas as fileiras, simplesmente precisa deixar essa parte do índice em branco. Mas precisa incluir sempre a virgula ou R não vai saber em qual dimensão você refere. Por exemplo, se queremos ver o valor para todos os dias de paciente 50, podemos dizer `dados[50, ]`.  O próximo bloco de código mostra todas esses opções.
+
+```{r subset1}
+dados[1,1]
+dados[1, 1:5] # 1º paciente, 1º cinco dias
+dados[1:5, 1] # 1º 5 pacientes, 1º dia
+dados[50, ] # paciente 50, todos os dias
+```
+
+*Subconjuntos no Tidyverse* -- `dplyr`
+
+Este código parece razoável, mas não muito claro. Não segue as recomendações sobre nomes de variáveis por exemplo. É típico das linguagens de computação. Com o Tidyverse, podemos fazer este aparecer mais como um idioma normal. Nós vamos usar umas novas funções para fazer os subconjuntos que queremos. 
+
+Primeiro desses funções permite que combinamos operações das funções diferentes na mesma expressão. Este símbolo está chamada o "pipe" e está escrito assim: `%>%`. Este conceito é muito comum em linguagens de computação,  especialmente do sistema UNIX, apesar que está expressa por vários símbolos. Em R, o pipe quer dizer "aceite o resultado da operação no lado esquerdo e aplique a função no lado direto ao este resultado". Com o uso do pipe, nós não precisamos repetir o nome do objeto do lado esquerdo da operação quando você especifica a função no lado direto. 
+
+O termo *pipe* não vem do sentido de tubo, mas da palavra "cachimbo" vindo de arte surrealista, especificamente do quadro do pintor belga René Magritte, "Ceci n'est pas une pipe". Por quê? Porque veio originalmente do pacote `magritte`, mas agora está incorporado no `dplyr`, o pacote principal do `tidyverse` para a manipulação dos dados.
+
+```{r pipe, echo = FALSE, fig.align='center', fig.cap = ""}
+knitr::include_graphics("~/Documents/Sustentare/Data_Analysis_with_R/dawR1/ceci_nest_pas_pipe.jpg")
+```
+
+Para nosso exemplo, o código vai parecer complicado em comparação ao código acima, mas ele ilustra funções importantes que ajudaria você em projetos mais complicados. As funções que vamos usar são os seguintes:
+
+- `slice()` -- seleciona as linhas segundo a posição delas
+
+- `select()` -- seleciona as colunas por nome
+
+```{r tidy_ex}
+# equivalente a dados[1,1]
+
+dados %>% 
+  slice(1) %>% 
+  select(X1)
+
+# equivalente a dados[1, 1:5]
+
+dados %>% 
+  slice(1) %>% 
+  select(X1:X5)
+
+# equivalente a dados[1:5, 1]
+
+dados %>% 
+  slice(1:5) %>% 
+  select(X1)
+
+# equivalente a dados[50, ]
+dados %>% 
+  slice(50)
+```
+
+Uma vantagem da gramatica do Tidyverse com o pipe é que facilita a explicação da operação do comando. Por exemplo, a última expressão pode ser lido como: "começa com o conjunto `dados`; depois utiliza as primeiras 5 fileiras e depois seleciona a primeira variável". Quando você tem expressões complicadas, que usam muitos verbos (palavra que o Tidyverse usa para refere às ações como `slice` ou `select`), este habilidade de ler a expressão em quase-português faz a programação mais compreensível.
+
+Você pode ver que as variáveis têm nomes estranhos, `X1`, etc. Para nossos fins, este não é horrível porque refere corretamente ao número de dia, 1 até 40. Entretanto, podemos fazer melhor. No próximo bloco, nós vamos dar nomes mais claros às variáveis introduzindo o conceito de um "*loop*" ou uma série repetitiva das ações que podemos executar repetidamente.
+
+### Novos Nomes para as Variáveis --- Loops
+
+Nomes mais claros para as variáveis ajudaria nosso entendimento do conjunto `dados` e faria a apresentação dos dados mais profissional. Existem várias técnicas que podemos usar para fazer, mas é um bom momento para ver um loop, um dos conceitos mais básicos da programação. Nós vamos criar um loop de tipo "*for*", que vai repetir comandos um certo número de vezes. O loop tem o formato: 
+
+`for`(expressão que define o número de repetições) {
+  código para executar dentro do loop
+} 
+
+Queremos que o loop considerar todas as variáveis, o número de que podemos determinar automaticamente com a função `seq_along()`. Esta função define uma sequência que começa com 1 e continua até o número das variáveis. Dentro do loop nós vamos criar um vetor com 40 cadeias de caráteres composto da palavra "dia" mais um número para o dia. Para fazer isso, usamos a função `paste0()` que concatena os argumentos da função e produz uma cadeia de caráteres. O número resultará do contador das iterações do loop, `i`. `paste0` difere da função `paste()` só pelo fato que `paste()` insere um espaço entre os elementos da função mas `paste0()` não, como implica o nome da função. Quando o loop completa as 40 iterações, ele para e passa controle para a próxima expressão no programa. Nesta linha, a função `col_names()` vai transferir o vetor dos nomes para `dados` como novos nomes das variáveis. [^6]
+
+[^6] O Tidyverse tem uma função equivalente, `glue()`, que vem do pacote homônimo. O funcionamento é em grande parte o mesmo. Pessoalmente, quando trabalho só com concatenação de textos, uso `paste()` e quando estou combinando o resultado dos cálculos com texto, uso `glue()`. Mas, aqui, para consistência, ficarei com `paste()` e `paste0()`. 
+
+Antes de começar a operação do loop, devemos instruir R onde colocar os nomes que o loop está compondo. Vou criar uma variável `nome` que será um vetor vazio. Durante a operação do loop, ele vai acrescentar os novos valores usando a função `c()`. 
+
+```{r loop_nomes}
+nome <- vector(mode = "character") 
+for (i in seq_along(dados)) {
+  nome <- c(nome, paste0("dia", i))
+}
+colnames(dados) <- nome
+str(dados[, 1:5])
+```
+
+
+Deixa-me explicar todos as linhas e os elementos deste código:
+
+- `nome <-` a linha que especifica o vetor para conter os resultados do loop 
+
+- `for` a definição do loop; a linha termina com a chave que inicia o bloco de código que o loop vai executar
+
+- `(i in seq_along(dados))` instrução para substituir a variável `i` no bloco de código com os números definidos pela expressão `seq_along`
+
+- `seq_along(dados)` - a sequência a ser definido que representa todos as variáveis conforme o cálculo abaixo
+
+```{r calc_seq}
+seq_along(dados)
+```
+
+- `nome <- c(nome, paste0("dia", i))` Concatenar a palavra "dia" com o valor de `i` (e.g. "dia1") e acrescentar este valor ao vetor `nome` 
+
+- `}` indicação do fim do bloco de código; quando encontra isso, o loop volta ao início e processa o próximo valor de `i`
+
+- `colnames(dados) <- nome` Quando termina o loop, dar novos nomes às colunas (variáveis) de `dados`
+
+- `str(dados[, 1:5])` Mostra a nova estrutura das primeira cinco colunas do tibble `dados` para confirmar que fizemos a operação de dar novos nomes com êxito.
+
+## Análise de Dados de Inflamação
+
+Vamos fazer um resumo dos dados e olhar em alguns gráficos para poder entender os dados melhor e preparar para tirar conclusões sobre o novo tratamento. Só para esta apresentação dos dados e das funções, vamos limitar os resumos aos dias 20 até dia 25. Mas os gráficos incluirá todos os dias (variáveis). Uma função básica para resumir dados é `summary()` que relata os valores seguintes:
+
+- valor mínimo da variável (`min`)
+- 1º quartil (25º percentil)
+- mediana (50º percentil) (`median`)
+- 3º quartil (75º percentil)
+- valor máximo (`max`)
+
+Também, existem muito outros resumos dos dados em R básico e nos pacotes que já fez o download. Durante o curso, vai encontrar vários desses pacotes e funções. O que `summary()` não relata que é muito importante é uma medida de variabilidade. Normalmente, usamos o desvio padrão para medir isso. Precisamos calcular isso separadamente de `summary()` usando a função `sd()` (*standard deviation*). Vamos calcular um resumo dos dados depois de fazer o subset que queremos.
+
+Mas, para fazer este cálculo de `sd()`, podemos usar um loop, mas tem outra maneira de conseguir a mesma coisa. O objetivo é calcular uma função para um número de variáveis em uma única operação. A família das funções `map()` calcula uma função (neste caso `sd()`) para todas as variáveis de nosso subset das variáveis. A função é muito simples e flexível. `map()` normalmente produz um tipo de dados chamado uma lista. Nós não queremos isso; queremos um vetor dos desvios padrão. Para conseguir isso, nós usamos o variante `map_dbl()` que produz um vetor dos números reais. Estamos colocando isso numa expressão *tidy* em que o pipe entrega o subset (`sub_dados`) para a função `map_dbl()`, a expressão só precisa o nome de função que queremos calcular (`sd`) sem os parênteses. 
+
+```{r}
+sub_dados <- dados %>% 
+  select(dia20:dia25)
+glimpse(sub_dados)
+summary(sub_dados)
+sub_dados %>% map_dbl(sd)
+```
+
+
+## Gráficos do Conjunto dos Dados
+
+Com um conjunto de dados intensivo, olhando nas tabelas e resumos não ajuda muito no entendimento do que dizem os dados. Gráficos comunicam melhor. Primeiro, queremos ver a tendência da inflamação no decorrer do estudo. Cresceu, diminuiu, quando, por quanto? Para descobrir isso, podemos calcular a média para cada dia e mostrar isso num gráfico de dispersão (*scatter plot*). Para este gráfico, nós vamos ficar com o plotagem simples de base R. Apesar isso, o gráfico seria o resultado de um expressão *tidy* que calcula as médias dos dias e entregam eles para a função `plot()`. Os argumentos incluídos aqui para a plotagem tem a ver com a apresentação, como títulos (`main`, `xlab`, `ylab`) e estilo de caráter (`pch`).
+
+Anote também que usamos a função `map_dbl()` de novo para calcular as médias e entregar esses valores para comando gráfico. 
+
+```{r graf_scat, fig.height = 4, fig.width = 5, fig.cap = "Gráfico de Dispersão", message = FALSE}
+
+dados %>% 
+  map_dbl(mean) %>% 
+  plot(type = "p", pch = 19, 
+       main = "Inflamação por Dia\ncom Novo Tratamento",
+       xlab = "Dia",
+       ylab = "Grau de Inflamação") 
+```
+
+## Whew! Final da Introdução
+
+Em pouco tempo, você já fez bastante R. Vale a pena tentar os blocos de código em casa e talvez ler a apostila mais de uma vez. Ao final do curso, este documento seria muito maior, com minhas notas para todas as aulas gravadas aqui também. Vai ser um pequeno livro sobre R. 
+
+Você olhou em cálculos simples e um conjunto de dados mais avançado. Você viu várias funções. Quando estamos juntos, nós vamos aplicar estas técnicas e muitas outras para problemas relacionados à biomedicina. Se você tem alguns assuntos que quer que eu cobra nas aulas, por favor entre em contato. Estou sempre aberto às sugestões.
+

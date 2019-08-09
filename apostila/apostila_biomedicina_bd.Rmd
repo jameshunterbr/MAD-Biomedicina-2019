@@ -6,10 +6,9 @@ author:
   affiliation: Bioinformática, UNIFESP
 date: '`r format(Sys.Date())`'
 output: bookdown::gitbook
-github-repo: rstudio/bookdown-demo
+github-repo: jameshunterbr/MAD-Biomedicina-2019
 link-citations: yes
 documentclass: book
-site: bookdown::bookdown_site
 description: 'Matéria de Análise de Dados com R (MAD-R): Curso para a Disciplina de Biomedicina'
 ---
 
@@ -173,7 +172,7 @@ O seguinte é o texto do arquivo. É muito simples. Só 2 comandos. Um que espec
 
 ```{r inst_packs, eval = FALSE, echo = TRUE}
 pacotes <- c("tidyverse", "broom", "car", 
-             "caret", "corrr", "data.table", 
+             "caret", "corrr", "data.table", "DataExplorer",
              "descr", "devtools", "gapminder", 
              "ggpubr", "ggvis", "glue",
              "gmodels", "here", "Hmisc", 

@@ -13,7 +13,7 @@
   
   
   <meta property="og:description" content="Matéria de Análise de Dados com R (MAD-R): Curso para a Disciplina de Biomedicina" />
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
+  <meta name="github-repo" content="jameshunterbr/MAD-Biomedicina-2019" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="2 Vamos Começar | Matéria de Análise de Dados (MAD) - Biomedicina" />
@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2019-08-06" />
+<meta name="date" content="2019-08-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -271,7 +271,7 @@ media &lt;- mean(dados)</code></pre>
 </blockquote>
 <p>CRAN é o grupo oficial que mantem R e garanta que todos os componentes funcionam sozinhos e juntos. Esta é uma razão que R está tornando muito popular – a qualidade do produto é muito alta. Figura 1 mostra a tela principal de R.</p>
 <div class="figure" style="text-align: center"><span id="fig:Rinicial"></span>
-<img src="graficos/CRAN_361_initial_screen.png" alt="R Tela Inicial" width="720" />
+<img src="/Users/jameshunter/Documents/MAD/MAD-Biomedicina-2019/graficos/CRAN_361_initial_screen.png" alt="R Tela Inicial" width="720" />
 <p class="caption">
 Figure 2.1: R Tela Inicial
 </p>
@@ -286,7 +286,7 @@ Figure 2.1: R Tela Inicial
 <li><p>Na próxima tela, clique no link “base” como na figura seguinte.</p></li>
 </ol>
 <div class="figure" style="text-align: center"><span id="fig:Rwin1"></span>
-<img src="graficos/CRAN_win_screen_1.png" alt="R Tela Windows" width="960" />
+<img src="/Users/jameshunter/Documents/MAD/MAD-Biomedicina-2019/graficos/CRAN_win_screen_1.png" alt="R Tela Windows" width="960" />
 <p class="caption">
 Figure 2.2: R Tela Windows
 </p>
@@ -302,7 +302,7 @@ Figure 2.2: R Tela Windows
 <p>Para instalar, navegue diretamente á página <a href="https://www.rstudio.com/products/rstudio/download/" class="uri">https://www.rstudio.com/products/rstudio/download/</a>, que permite que você evita muita informação desnecessária.</p>
 <p>Esta tela tem muita informação. Então precisa rolar para baixo até que você chega nos “Installers for Supported Platforms”. Parece como a figura seguinte:</p>
 <div class="figure" style="text-align: center">
-<img src="graficos/RStudio_download.png" alt="RStudio Tela Instalação" width="568" />
+<img src="/Users/jameshunter/Documents/MAD/MAD-Biomedicina-2019/graficos/RStudio_download.png" alt="RStudio Tela Instalação" width="568" />
 <p class="caption">
 (#fig:Rstud_install)RStudio Tela Instalação
 </p>
@@ -316,7 +316,7 @@ Figure 2.2: R Tela Windows
 <p>No seu Desktop ou nos menus, clique no ícone de RStudio (não o ícone de R) duas vezes. RStudio vai abrir e R vai abrir automaticamente dentro de RStudio. Num dos painéis (normalmente o painel no lado esquerdo) vai aparecer o <em>Console</em>, onde R executa as funções. No lado direto têm dois painéis. Naquele para cima são várias abas relacionadas aos variáveis que R guarda na memória ativa do computador e comandos que você executa. No painel inferior, têm abas que mostram informação sobre os arquivos na pasta “<em>working directory</em>”, o lugar onde R acha os arquivos (data, programas) que você quer executar, os pacotes que você tem no computador e as páginas de assistência (“<em>Help</em>”) para R. Vou falar sobre todos esse tópicos mais tarde. Utilizando as Preferências (no item de menu de “RStudio”), você pode controlar a aparência da tela).</p>
 <p>O painel de Console mostrará que a versão atual (3.6.1) de R está carregado e pronta para operação.</p>
 <div class="figure" style="text-align: center">
-<img src="graficos/start_up_text.png" alt="RStudio Tela Inicial" width="398" />
+<img src="/Users/jameshunter/Documents/MAD/MAD-Biomedicina-2019/graficos/start_up_text.png" alt="RStudio Tela Inicial" width="398" />
 <p class="caption">
 (#fig:Rstud_main)RStudio Tela Inicial
 </p>
@@ -327,7 +327,7 @@ Figure 2.2: R Tela Windows
 <p>Durante o curso, nós vamos usar vários pacotes com funções adicionais que vão além as de R básico (“<em>Base R</em>”). Vocês podem instalar os mais importantes através de um script que já preparei para você. Trabalhando com o script vai permitir que vocês começam de aprender como usar o R. O script tem o nome “instalar_pacotes.R”.</p>
 <p>O seguinte é o texto do arquivo. É muito simples. Só 2 comandos. Um que especifica os pacotes que vamos instalar e uma função que faz o trabalho (<code>install.packages()</code>).</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">pacotes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;tidyverse&quot;</span>, <span class="st">&quot;broom&quot;</span>, <span class="st">&quot;car&quot;</span>, </a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">             <span class="st">&quot;caret&quot;</span>, <span class="st">&quot;corrr&quot;</span>, <span class="st">&quot;data.table&quot;</span>, </a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">             <span class="st">&quot;caret&quot;</span>, <span class="st">&quot;corrr&quot;</span>, <span class="st">&quot;data.table&quot;</span>, <span class="st">&quot;DataExplorer&quot;</span>,</a>
 <a class="sourceLine" id="cb3-3" data-line-number="3">             <span class="st">&quot;descr&quot;</span>, <span class="st">&quot;devtools&quot;</span>, <span class="st">&quot;gapminder&quot;</span>, </a>
 <a class="sourceLine" id="cb3-4" data-line-number="4">             <span class="st">&quot;ggpubr&quot;</span>, <span class="st">&quot;ggvis&quot;</span>, <span class="st">&quot;glue&quot;</span>,</a>
 <a class="sourceLine" id="cb3-5" data-line-number="5">             <span class="st">&quot;gmodels&quot;</span>, <span class="st">&quot;here&quot;</span>, <span class="st">&quot;Hmisc&quot;</span>, </a>
@@ -346,7 +346,7 @@ Figure 2.2: R Tela Windows
 <p>Uma dica sobre o operador de atruibição. Só usa o “<code>&lt;-</code>” e não o “<code>=</code>”. Em algum momento, você vai confundir os 2 usos de “<code>=</code>”. Todos nós fazemos. Desenvolve o hábito agora de usar o “<code>&lt;-</code>” e pode evitar esse erro.</p>
 <p>O segundo comando nesta expressão é o <code>c()</code>. Este função quer dizer “concatenar” ou colocar os itens que seguem num vetor. Os itens podem ser qualquer tipo de dado que R reconhece. No capítulo X, exploraremos os tipos de dados que pode usar em R. Outra novidade é que agora você viu um <strong>vetor</strong>. Um vetor é um matriz, mas de uma dimensão só. Depois que você executa esta função, vai ver na janela de <em>Environment</em> a variável <code>pacotes</code> e que ela é do tipo “caráter” (<code>chr</code>) e tem elementos 1 até 37.</p>
 <div class="figure" style="text-align: center"><span id="fig:pacotes1"></span>
-<img src="graficos/pacotes_vector.png" alt="Vetor Pacotes" width="306" />
+<img src="/Users/jameshunter/Documents/MAD/MAD-Biomedicina-2019/graficos/pacotes_vector.png" alt="Vetor Pacotes" width="306" />
 <p class="caption">
 Figure 2.3: Vetor Pacotes
 </p>
@@ -358,21 +358,21 @@ Figure 2.3: Vetor Pacotes
 <p>Um dos recursos mais importantes para todos os programadores de computador é GitHub. É a face pública do sistema de controle de versões <code>git</code>. Git permite que você sempre tem todas as versões de seus programas ou scripts mantidas no seu computador (numa forma eficiente) para que você possa voltar às versões anteriores quando você está explorando e corrigindo erros que todo programador faz. GitHub tem <em>repositórios</em> onde são guardados os arquivos de um projeto. Nós vamos falar dos projetos um pouco mais tarde.</p>
 <p>Nosso curso tem um <em>repo</em> (como pessoas referem aos repositórios) que você pode achar aqui: <a href="https://github.com/jameshunterbr/MAD-Biomedicina-2019" class="uri">https://github.com/jameshunterbr/MAD-Biomedicina-2019</a></p>
 <div class="figure" style="text-align: center"><span id="fig:github1"></span>
-<img src="graficos/github_repo_biomed.png" alt="GitHub Repo" width="464" />
+<img src="/Users/jameshunter/Documents/MAD/MAD-Biomedicina-2019/graficos/github_repo_biomed.png" alt="GitHub Repo" width="464" />
 <p class="caption">
 Figure 2.4: GitHub Repo
 </p>
 </div>
 <p>Se você clica no nome de arquivo, você irá à tela seguinte, onde fica o código dos dois comandos.</p>
 <div class="figure" style="text-align: center"><span id="fig:github2"></span>
-<img src="graficos/instal_pac_file.png" alt="Instalar_Pacotes.R no GitHub" width="534" />
+<img src="/Users/jameshunter/Documents/MAD/MAD-Biomedicina-2019/graficos/instal_pac_file.png" alt="Instalar_Pacotes.R no GitHub" width="534" />
 <p class="caption">
 Figure 2.5: Instalar_Pacotes.R no GitHub
 </p>
 </div>
 Aqui, clicar no botão <strong>Raw</strong> e fazer um “right-click” (botão secondário do mouse) na tela seguinte. Você pode salvar o arquivo para seu <em>working directory</em> usando o botão <strong>Save Page As …</strong>. Esta tela mostra o comando no Firefox e os comandos de seu browser talvez são um pouco diferentes.
 <div class="figure" style="text-align: center"><span id="fig:github3"></span>
-<img src="graficos/save_page_as.png" alt="Save File As ..." width="478" />
+<img src="/Users/jameshunter/Documents/MAD/MAD-Biomedicina-2019/graficos/save_page_as.png" alt="Save File As ..." width="478" />
 <p class="caption">
 Figure 2.6: Save File As …
 </p>
@@ -386,7 +386,7 @@ Figure 2.6: Save File As …
 <h3><span class="header-section-number">2.8.4</span> Instalar os Pacotes</h3>
 <p>O próximo passo é carregar o programa com os comandos e executá-lo. Para carregar, só precisa clicar no nome do arquivo <code>instalar_pacotes.R</code> e ele vai abrir numa janela acima do Console.</p>
 <div class="figure" style="text-align: center">
-<img src="graficos/instalar_pacotes_280719.png" alt="RStudio Janela de Programas" width="390" />
+<img src="/Users/jameshunter/Documents/MAD/MAD-Biomedicina-2019/graficos/instalar_pacotes_280719.png" alt="RStudio Janela de Programas" width="390" />
 <p class="caption">
 (#fig:janela_script)RStudio Janela de Programas
 </p>

@@ -13,7 +13,7 @@
   
   
   <meta property="og:description" content="Matéria de Análise de Dados com R (MAD-R): Curso para a Disciplina de Biomedicina" />
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
+  <meta name="github-repo" content="jameshunterbr/MAD-Biomedicina-2019" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="7 Importação dos Dados | Matéria de Análise de Dados (MAD) - Biomedicina" />
@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2019-08-06" />
+<meta name="date" content="2019-08-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -220,7 +220,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">7.1</span> Fluxo de Trabalho de Análises em R</h2>
 <p>Qualquer projeto que precisa as ferramentas da ciência de dados tem uma forma e fluxo de trabalho parecida. O diagrama seguinte mostra este processo: <a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a></p>
 <div class="figure" style="text-align: center">
-<img src="graficos/wickham_process.png" alt="Processo de Programação com R" width="294" />
+<img src="/Users/jameshunter/Documents/MAD/MAD-Biomedicina-2019/graficos/wickham_process.png" alt="Processo de Programação com R" width="294" />
 <p class="caption">
 (#fig:process_w)Processo de Programação com R
 </p>
@@ -238,14 +238,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">7.2.1</span> <code>read_csv()</code> — Arquivos .csv</h3>
 <p>Já apresentei o uso de <code>readr::read_csv()</code> (o nome de um pacote seguido por 2 dois pontos e o nome de uma função é usado em R para especificar qual versão desse nome você quer usar ou, como neste caso, para enfatizar de qual pacote a função vem) em relação dos dados de inflamação. Vamos aplicar esta função para um caso de marcadores de infecção pelo vírus HIV-1, carga viral (cv) e nível dos células T-CD4+.</p>
 <div class="figure" style="text-align: center">
-<img src="graficos/excel_hiv.png" alt="Excel - Dados HIV.csv" width="144" />
+<img src="/Users/jameshunter/Documents/MAD/MAD-Biomedicina-2019/graficos/excel_hiv.png" alt="Excel - Dados HIV.csv" width="144" />
 <p class="caption">
 (#fig:cv_cd4_excel)Excel - Dados HIV.csv
 </p>
 </div>
 <p>Porque o padrão para o argumento <code>col_names</code> é <code>TRUE</code>, neste caso, podemos deixar a função importar as palavras na primeira linha como os nomes de variáveis. Se você não quer usar os nomes do Excel, pode mudar o argumento para <code>FALSE</code>, como fizemos no último capitulo. Também, <code>readr</code> tentará interpretar quais são as classes dos valores nas colunas, utilizando os primeiras 100 linhas para determinar se são caráteres, números, datas, ou valores lógicos. Você pode controlar os tipos de colunas com o argumento <code>col_types</code>. Neste caso, se quisemos, podemos especificar as colunas como <code>col_types = c(c,c,n,c)</code> (caractere, caractere, número, caractere) como esta figura mostra.</p>
 <div class="figure" style="text-align: center">
-<img src="graficos/col_types_help.png" alt="Tipos de Coluna" width="384" />
+<img src="/Users/jameshunter/Documents/MAD/MAD-Biomedicina-2019/graficos/col_types_help.png" alt="Tipos de Coluna" width="384" />
 <p class="caption">
 (#fig:col_types_help)Tipos de Coluna
 </p>
@@ -281,7 +281,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>O sistema <code>tidyverse</code> inclui um pacote, <code>readxl</code> que facilita importar os dados diretamente de uma planilha do Excel. Entretanto, ele não está carregado pelo comando <code>library(tidyverse)</code> e precisa ser carregado individualmente. <code>readxl</code> pode importar uma planilha do tipo moderno de <code>.xlsx</code> ou do tipo antigo <code>.xls</code>. O comando <code>read_excel()</code> tenta adivinhar qual é o tipo de arquivo que você abre. Se tiver problemas com o arquivo, você pode usar ou <code>read_xlsx</code> ou <code>read_xls</code> diretamente para abrir aquele tipo de arquivo.</p>
 <p>Para demonstrar esta função, eu vou usar um arquivo derivado de um outro projeto verdadeiro de pesquisa em que estou envolvido sobre a doença HIV. A planilha mostra alguns dados sobre os pacientes e sobre os resultados dos exames que eles fizeram ao início do estudo. Esta planilha, <code>pac_demo.xlsx</code> tem duas folhas. A primeira, <code>pac_demo</code>, contem os dados. A segunda folha, <code>data_dic</code> tem a dicionário dos dados, ou seja, uma lista dos nomes das variáveis, os seus tipos, e uma explicação textural do conteúdo.</p>
 <div class="figure" style="text-align: center">
-<img src="graficos/excel_data_dic.png" alt="Diccionário dos Dados" width="262" />
+<img src="/Users/jameshunter/Documents/MAD/MAD-Biomedicina-2019/graficos/excel_data_dic.png" alt="Diccionário dos Dados" width="262" />
 <p class="caption">
 (#fig:data_dic)Diccionário dos Dados
 </p>
@@ -320,7 +320,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" data-line-number="1">r_designacao &lt;-<span class="st"> </span><span class="dv">26</span> <span class="op">*</span><span class="st"> </span><span class="dv">37</span></a>
 <a class="sourceLine" id="cb81-2" data-line-number="2"><span class="co"># agora quero ver o valor</span></a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:spell"></span>
-<img src="graficos/spelling_erro.png" alt="Erros de atribuição" width="184" />
+<img src="/Users/jameshunter/Documents/MAD/MAD-Biomedicina-2019/graficos/spelling_erro.png" alt="Erros de atribuição" width="184" />
 <p class="caption">
 Figure 7.1: Erros de atribuição
 </p>
@@ -334,14 +334,14 @@ Figure 7.1: Erros de atribuição
 <h3><span class="header-section-number">7.3.1</span> Assistência – RStudio</h3>
 <p>Na luta para lembrar e grafar os nomes dos objetos corretamente, RStudio pode ajudar você com 2 atalhos. Primeiro, se você escreve os primeiros caráteres de um nome e toca na tecla <TAB>, RStudio vai dar uma lista dos objetos (variáveis, data frames, tibbles e funções) que começam com este sequência dos caráteres. A figura seguinte mostra esta ajuda. Selecione o nome que você quer e toca no <TAB> de novo. RStudio vai completar o nome.</p>
 <div class="figure" style="text-align: center">
-<img src="graficos/name_choice.png" alt="&lt;TAB&gt; Ajuda com Nomes" width="156" />
+<img src="/Users/jameshunter/Documents/MAD/MAD-Biomedicina-2019/graficos/name_choice.png" alt="&lt;TAB&gt; Ajuda com Nomes" width="156" />
 <p class="caption">
 (#fig:name_help)<TAB> Ajuda com Nomes
 </p>
 </div>
 <p>Segundo, se você tecla uma linha de código complicado e fazer um erro, mas não quer teclar toda a linha de novo, RStudio pode ajudar você. O software lembra todas as linhas de código que você já escreveu. Se você escreve só os primeiros caráteres da linha e toca nas teclas <CMD/CTRL> + <SETA-PARA-CIMA> e RStudio mostrará as últimas linhas de código que usam estes caráteres ao início. No exemplo seguinte, uma linha de código de um projeto de pesquisa meu, teclei o nome de um objeto como <code>trpl_new</code> e R retornou um erro. Eu quis <code>prpl_new</code>. Invés de escrever toda a linha de novo, posso tocar a combinação de <CMD/CTRL> + <SETA-PARA-CIMA> no Console (não na janela de programação), e a historia dos comandos aparecerá. Selecione a linha que você quer inserir, faça sua correção e executar. Se a linha de código que você quer repetir (para corrigir) é a última, existe uma versão simplificada deste truque: só toque na tecla de <SETA-PARA-CIMA> e a última linha vai aparacer no Console. Finalmente, você pode ver todas as linhas que você já executou, mesmo se eles vieram das sessões de trabalho anteriores na aba <code>History</code> da janela a cima para direta como a figura seguinte mostra. <a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a></p>
 <div class="figure" style="text-align: center"><span id="fig:history"></span>
-<img src="graficos/history.png" alt="&lt;TAB&gt; Janela de History" width="368" />
+<img src="/Users/jameshunter/Documents/MAD/MAD-Biomedicina-2019/graficos/history.png" alt="&lt;TAB&gt; Janela de History" width="368" />
 <p class="caption">
 Figure 7.2: <TAB> Janela de History
 </p>

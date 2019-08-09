@@ -13,7 +13,7 @@
   
   
   <meta property="og:description" content="Matéria de Análise de Dados com R (MAD-R): Curso para a Disciplina de Biomedicina" />
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
+  <meta name="github-repo" content="jameshunterbr/MAD-Biomedicina-2019" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="6 Estilo de Código e Manipulação das Variáveis | Matéria de Análise de Dados (MAD) - Biomedicina" />
@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2019-08-06" />
+<meta name="date" content="2019-08-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -233,7 +233,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Frequentemente, pessoas gostam de usar nomes muito breves, mas não muito claros com <code>x</code>, <code>i</code> ou <code>n24</code>. É muito melhor usar nomes que explicam o que contem a variável que de enfatizar brevidade.</p>
 <p>Existem muitos outros aspetos de estilo que são padronizado no mundo de programação de R. Uma guia para um estilo claro de programação foi desenvolvido pelo Hadley Wickham de RStudio e pode ser achado aqui: <a href="http://style.tidyverse.org/" class="uri">http://style.tidyverse.org/</a>. O pacote <code>styler</code> que você carregou na instalação criou “Addins” no RStudio que pode acessar do item na barra superior. Esses opções permite que R em si coloca seu código no estilo correto seguindo as normas da guia de Wickham.</p>
 <div class="figure" style="text-align: center"><span id="fig:styler"></span>
-<img src="graficos/style_addin.png" alt="Styler Addins" width="195" />
+<img src="/Users/jameshunter/Documents/MAD/MAD-Biomedicina-2019/graficos/style_addin.png" alt="Styler Addins" width="195" />
 <p class="caption">
 Figure 6.1: Styler Addins
 </p>
@@ -242,7 +242,7 @@ Figure 6.1: Styler Addins
 <h3><span class="header-section-number">6.1.1</span> Uma Pergunta sobre o Estilo – Parenteses depois de uma função</h3>
 <p>Este é um bom momento para comentar porque sempre usamos <code>()</code> depois do nome da função. Com os parênteses, R vai executar a função. Sem eles, vai imprimir para a tela o código (ou seja, o conteúdo) da função. Por exemplo, na figura seguinte, mostro a função <code>coalesce</code> do pacote <code>dplyr</code>. Na primeira versão, <strong>sem</strong> parenteses, R mostra o código da função. Na segunda, <strong>com</strong> parenteses, R mostra o resultado do cálculo da função.</p>
 <div class="figure" style="text-align: center"><span id="fig:getwd"></span>
-<img src="graficos/coalesce()_vs_coalesce.png" alt="coalesce vs. coalesce()" width="338" />
+<img src="/Users/jameshunter/Documents/MAD/MAD-Biomedicina-2019/graficos/coalesce()_vs_coalesce.png" alt="coalesce vs. coalesce()" width="338" />
 <p class="caption">
 Figure 6.2: coalesce vs. coalesce()
 </p>
@@ -273,24 +273,24 @@ Figure 6.2: coalesce vs. coalesce()
 <p>Para carregar pacotes que já temos instalados no computador, usamos a função <code>library()</code> com o nome do pacote como argumento. Entretanto, para ver o efeito de carregar o Tidyverse, vamos olhar na diferença entre o estado da memoria antes e depois do Tidyverse. Para isso, usamos a função <code>sessionInfo()</code> para mostra o que está carregado. Primeiro, aqui é como sua memoria quando você inicia R.</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="kw">sessionInfo</span>() <span class="co">## Comando para mostrar o estado do sistema R neste momento</span></a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:siantes"></span>
-<img src="graficos/session_bare.png" alt="Pacotes Antes Tidyverse" width="420" />
+<img src="/Users/jameshunter/Documents/MAD/MAD-Biomedicina-2019/graficos/session_bare.png" alt="Pacotes Antes Tidyverse" width="420" />
 <p class="caption">
 Figure 6.3: Pacotes Antes Tidyverse
 </p>
 </div>
 <p>Só têm os sete pacotes básicos que R carregar quando incia. Agora vamos carregar o Tidyverse.</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
-<pre><code>## ── Attaching packages ───────────────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
+<pre><code>## ── Attaching packages ──────────────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
 <pre><code>## ✔ ggplot2 3.2.0          ✔ purrr   0.3.2     
 ## ✔ tibble  2.1.3          ✔ dplyr   0.8.3     
 ## ✔ tidyr   0.8.3.9000     ✔ stringr 1.4.0     
 ## ✔ readr   1.3.1          ✔ forcats 0.4.0</code></pre>
-<pre><code>## ── Conflicts ──────────────────────────────────────────────── tidyverse_conflicts() ──
+<pre><code>## ── Conflicts ─────────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()</code></pre>
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="kw">sessionInfo</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center">
-<img src="graficos/session_tidyv.png" alt="Tidyverse Básico" width="418" />
+<img src="/Users/jameshunter/Documents/MAD/MAD-Biomedicina-2019/graficos/session_tidyv.png" alt="Tidyverse Básico" width="418" />
 <p class="caption">
 (#fig:tidyverse_load)Tidyverse Básico
 </p>
@@ -314,14 +314,14 @@ Figure 6.3: Pacotes Antes Tidyverse
 <p>Para carregar, nós vamos usar a função <code>read_csv()</code> que vai pegar o arquivo e criar um objeto na memoria do R.</p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1">dados &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;inflamacao.csv&quot;</span>, <span class="dt">col_names =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center">
-<img src="graficos/environment_dados.png" alt="Environment com dados" width="216" />
+<img src="/Users/jameshunter/Documents/MAD/MAD-Biomedicina-2019/graficos/environment_dados.png" alt="Environment com dados" width="216" />
 <p class="caption">
 (#fig:env_dados)Environment com dados
 </p>
 </div>
 <p>A função <code>read_csv()</code> vem do pacote <code>readr</code>. Ela tenta automatizar tanto quanto é possível a importação dos dados. Até, ela analisa os dados para decidir qual é o tipo de dados que o conjunto tem: caráter, número inteiro, número decimal, lógico, etc. Também usa a primeira linha como o nome das variáveis (colunas da planilha). Neste caso, as colunas só têm dados, não nomes na primeira linha. Então, temos que avisar <code>read_csv()</code> disso. Assim, usamos o argumento <code>colnames = FALSE</code> porque o padrão é <code>colnames = TRUE</code>, como a tela de <em>Help</em> para <code>read_csv</code> mostra.</p>
 <div class="figure" style="text-align: center">
-<img src="graficos/read_csv_help.png" alt="read_csv Help" width="376" />
+<img src="/Users/jameshunter/Documents/MAD/MAD-Biomedicina-2019/graficos/read_csv_help.png" alt="read_csv Help" width="376" />
 <p class="caption">
 (#fig:help_read_csv)read_csv Help
 </p>
@@ -392,7 +392,7 @@ Figure 6.3: Pacotes Antes Tidyverse
 <p>Este código parece razoável, mas não muito claro. Não segue as recomendações sobre nomes de variáveis por exemplo. É típico das linguagens de computação. Com o Tidyverse, podemos fazer este aparecer mais como um idioma normal. Nós vamos usar umas novas funções para fazer os subconjuntos que queremos.</p>
 <p>Primeiro desses funções permite que combinamos operações das funções diferentes na mesma expressão. Este símbolo está chamada o “pipe” e está escrito assim: <code>%&gt;%</code>. Este conceito é muito comum em linguagens de computação, especialmente do sistema UNIX, apesar que está expressa por vários símbolos. Em R, o pipe quer dizer “aceite o resultado da operação no lado esquerdo e aplique a função no lado direto ao este resultado”. Com o uso do pipe, nós não precisamos repetir o nome do objeto do lado esquerdo da operação quando você especifica a função no lado direto.</p>
 <p>O termo <em>pipe</em> não vem do sentido de tubo, mas da palavra “cachimbo” vindo de arte surrealista, especificamente do quadro do pintor belga René Magritte, “Ceci n’est pas une pipe”. Por quê? Porque veio originalmente do pacote <code>magritte</code>, mas agora está incorporado no <code>dplyr</code>, o pacote principal do <code>tidyverse</code> para a manipulação dos dados.</p>
-<p><img src="graficos/ceci_nest_pas_pipe.jpg" width="135" style="display: block; margin: auto;" /></p>
+<p><img src="/Users/jameshunter/Documents/MAD/MAD-Biomedicina-2019/graficos/ceci_nest_pas_pipe.jpg" width="135" style="display: block; margin: auto;" /></p>
 <p>Para nosso exemplo, o código vai parecer complicado em comparação ao código acima, mas ele ilustra funções importantes que ajudaria você em projetos mais complicados. As funções que vamos usar são os seguintes:</p>
 <ul>
 <li><p><code>slice()</code> – seleciona as linhas segundo a posição delas</p></li>
